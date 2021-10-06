@@ -32,12 +32,38 @@ def test_get_temp():
 	assert get_temp(30, 'C', 'F')==86.0
 	assert get_temp(10,'C','K')!=100
 	assert get_temp(250,'K','C')!=10
+def get_cmmmc_doua_numere(a,b):
+	p=a*b
+	while a!=b:
+		if a>b:
+			a=a-b
+		else:
+			b=b-a
+	return p//a
+def get_cmmmc(lst):
+	'''
+	se calculeaza cel mai mic multiplu comun dintr-un sir de numere
+	:param lst: sirul de numere
+	:return: cel mai mic multiplu comun
+	'''
+	cmmmc=lst[0]
+	i=1
+	for i in range(len(lst)):
+		cmmmc=get_cmmmc_doua_numere(cmmmc,lst[i])
+	return cmmmc
+def test_get_cmmmc():
+	assert get_cmmmc([8,12,24])==24
+	assert get_cmmmc([8,12,20])==120
+	assert get_cmmmc([10,3,5])!=5
+	assert get_cmmmc([50,23,14])!=10
+
 
 
 def main():
 	while True:
 		print('1.Determinare palindrom')
 		print('2.Transformare temperaturi')
+		print('3.Cel mai mic multiplu comun')
 		print ('x.Iesire din program')
 		optiune=input('Alege optiunea')
 		if optiune=='1':
@@ -52,9 +78,19 @@ def main():
 			scara2= str(input('Dati scara in care vreti sa transformati'))
 			temperatura_finala= get_temp(temperatura_initiala,scara1,scara2)
 			print(f'Temperatura finala este de {temperatura_finala} grade {scara2}')
+		elif optiune=='3':
+			numere_str = input('dati numerele separate prin spatiu')
+			numere_str_lst = numere_str.split(' ')
+			numere_int_lst = []
+			for nr_str in numere_str_lst:
+				numere_int_lst.append(int(nr_str))
+			cmmmc = get_cmmmc(numere_int_lst)
+			print(f'Cel mai mare multiplu comun al listei este {cmmmc}')
 
 		elif optiune=='x':
 			break
 test_is_palindrom()
 test_get_temp()
-main()
+test_get_cmmmc()
+if __name__ == '__main__':
+    main()
