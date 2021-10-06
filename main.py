@@ -1,5 +1,10 @@
 
 def is_palindrome(n):
+	'''
+	verifica daca un numar este palindrom
+	:param n: un numar
+	:return: returneaza True daca numarul e palindrom si False in caz contrar
+	'''
 	copie=n
 	rasturnat=0
 	while (n > 0):
@@ -15,6 +20,13 @@ def test_is_palindrom():
 	assert is_palindrome(41) == False
 
 def get_temp(n,unit1,unit2):
+	'''
+	Transforma o temepratura dintr-o unitate in alta
+	:param n: temperatura pe care dorim sa o transformam
+	:param unit1: unitatea temperaturii initiale
+	:param unit2: unitatea temperaturii modificate
+	:return:
+	'''
 	if unit1=='K':
 		if unit2=="C":
 			return n-273.15
